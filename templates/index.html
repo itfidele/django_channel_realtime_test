@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Django data Testing</title>
 </head>
-<body>
-    <h1 id='app'>{{ text }}</h1>
-    <p id='info'></p>
+<body align='center'>
+    <h1 id='info'>Fetched item count from view</h1>
+    <h2 id='app' style='font-size:72px;color:blue;'>{{ text }}</h2>
     <script>
         var socket = new WebSocket('ws://localhost:8000/ws/integer/')
 
         socket.onmessage = function (event){
             console.log("received updates")
             var data = JSON.parse(event.data)
-            alert('hello')
-            //console.log(data)
+            console.log(data)
             document.querySelector('#app').innerHTML = data.message
+            document.querySelector('#info').innerHTML = "Updates Received"
         }
 
 
