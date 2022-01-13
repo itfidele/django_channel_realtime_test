@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django data Testing</title>
+</head>
+<body>
+    <h1 id='app'>{{ text }}</h1>
+    <p id='info'></p>
+    <script>
+        var socket = new WebSocket('ws://localhost:8000/ws/integer/')
+
+        socket.onmessage = function (event){
+            console.log("received updates")
+            var data = JSON.parse(event.data)
+            alert('hello')
+            //console.log(data)
+            document.querySelector('#app').innerHTML = data.message
+        }
+
+
+        socket.onopen = function(e){
+            console.log("message", e)
+        }
+
+        socket.onerror = function(e){
+            console.log("message", e)
+        }
+
+        socket.onclose = function(e){
+            console.log("message", e)
+        }
+
+
+    </script>
+</body>
+</html>
