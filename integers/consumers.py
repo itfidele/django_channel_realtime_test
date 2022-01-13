@@ -1,8 +1,4 @@
-import json
-from random import randint
-from channels.consumer import SyncConsumer
-from channels.generic.websocket import WebsocketConsumer,AsyncJsonWebsocketConsumer
-from time import sleep
+from channels.generic.websocket import AsyncJsonWebsocketConsumer
 from .models import Data
 from channels.db import database_sync_to_async
 from asgiref.sync import async_to_sync,sync_to_async
