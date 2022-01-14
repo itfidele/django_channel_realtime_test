@@ -9,13 +9,21 @@
 <body align='center'>
     <h1 id='info'>Fetched item count from view</h1>
     <h2 id='app' style='font-size:72px;color:blue;'>{{ text }}</h2>
+
+        <h2>From Database </h2>
+    <ul id="content">
+    
+    </ul>
     <script>
         var socket = new WebSocket('ws://localhost:8000/ws/integer/')
 
         socket.onmessage = function (event){
             console.log("received updates")
             var data = JSON.parse(event.data)
-            console.log(data)
+
+            document.querySelector('#content').innerHTML = data.datas
+        
+           
             document.querySelector('#app').innerHTML = data.message
             document.querySelector('#info').innerHTML = "Updates Received"
         }
@@ -33,6 +41,7 @@
             console.log("message", e)
         }
 
+    
 
     </script>
 </body>

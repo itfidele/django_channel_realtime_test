@@ -3,6 +3,11 @@ from django.db.models.signals import post_save, post_delete
 from .models import Data
 from django.dispatch import receiver
 from asgiref.sync import async_to_sync
+import json
+
+
+def print_str():
+    print(list(Data.objects.values()))
 
 @receiver(post_delete,sender=Data)
 @receiver(post_save, sender=Data)
@@ -12,6 +17,7 @@ def change_data(sender, instance, *args, **kwargs):
         "type":"data_update",
         "event":'update_integer',
         'message':count,
-        'data':'welcome',
+        'datas':json.dumps(list(Data.objects.values('number')))
     })
+    
     
