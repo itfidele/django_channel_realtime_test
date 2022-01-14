@@ -17,7 +17,7 @@ class WSConsumer(AsyncJsonWebsocketConsumer):
         print("receive",message)
     
     async def disconnect(self, close_code):
-        await self.channel_layer.group_discard("hello", self.channel_name)
+        await self.channel_layer.group_discard("well", self.channel_name)
 
     async def data_update(self,event):
         await self.send_json(event)
